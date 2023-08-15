@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useRedirect from "../../hook/useAuthRedirect";
 
 function JoinForm() {
+  //Hook을 이용한 todo 이동
   useRedirect("/todo");
   const naviate = useNavigate();
   const [{ email, password }, onChangeForm] = useInputs({

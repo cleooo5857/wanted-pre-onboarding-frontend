@@ -1,14 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Joinpage from "../pages/joinpage";
-import Loginpage from "../pages/loginpage";
+import Joinpage from "../pages/Join/joinPage";
+import Loginpage from "../pages/Login/loginPage";
 import PrivateRoute from "./PrivateRoute";
-import TodoPage from "../pages/todopage";
-import { TokenRepository } from "../repository/TokenRepository";
+import TodoPage from "../pages/Todo/todoPage";
 
 function Routing() {
-  console.log(TokenRepository.getToken());
-
   return (
     <BrowserRouter>
       <Routes>

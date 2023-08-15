@@ -7,6 +7,8 @@ import { TokenRepository } from "../../repository/TokenRepository";
 import useRedirect from "../../hook/useAuthRedirect";
 
 function LoginForm() {
+  //Hook을 이용한 todo 이동
+
   useRedirect("/todo");
   const naviate = useNavigate();
   const [{ email, password }, onChangeForm] = useInputs({

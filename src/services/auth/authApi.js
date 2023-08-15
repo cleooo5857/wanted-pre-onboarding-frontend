@@ -1,13 +1,13 @@
-import Axios from "..";
+import { axiosInstance } from "..";
 
 const path = "/auth";
 
 export const AuthApi = {
   login: ({ email, password }) => {
-    return Axios.post(path + "/signin", { email, password });
+    return axiosInstance.post(path + "/signin", { email, password });
   },
 
   signup: ({ email, password }) => {
-    return Axios.post(path + "/signup", { email, password });
+    return axiosInstance.post(path + "/signup", { email, password });
   },
 };
