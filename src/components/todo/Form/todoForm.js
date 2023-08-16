@@ -26,7 +26,7 @@ function TodoForm({ todoList, setTodoList }) {
         placeholder="Enter your todo..."
       />
       <Button onClick={onClickAddBtn} data-testid="new-todo-add-button">
-        Add Todo
+        추가
       </Button>
     </FormContainer>
   );
@@ -45,6 +45,7 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   flex: 1;
+  margin-right: 10px;
 `;
 
 const Button = styled.button`

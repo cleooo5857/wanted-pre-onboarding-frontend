@@ -5,12 +5,12 @@ const GlobalStyles = createGlobalStyle`
    
    html, body {
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: #1a1a1a;
+      color: white;
    }
    *{  
       box-sizing: border-box;
+      margin: 0;
    }
    button {
       border: none;

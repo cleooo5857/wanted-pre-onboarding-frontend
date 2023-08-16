@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "../pages/Main/mainPage";
 import Joinpage from "../pages/Join/joinPage";
 import Loginpage from "../pages/Login/loginPage";
 import PrivateRoute from "./PrivateRoute";
@@ -9,6 +10,7 @@ function Routing() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<Joinpage />} />
         <Route path="/signin" element={<Loginpage />} />
         <Route element={<PrivateRoute />}>

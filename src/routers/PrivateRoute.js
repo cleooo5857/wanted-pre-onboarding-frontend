@@ -8,7 +8,6 @@ function PrivateRoute() {
   if (access) {
     return <Outlet />;
   } else {
-    // User is not logged in, redirect to /signin
     return <Navigate to="/signin" replace />;
   }
 }

@@ -22,7 +22,7 @@ function TodoIndex() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <TodoForm todoList={todoList} setTodoList={setTodoList} />
       <ul>
         {todoList.map((todo) => (
@@ -36,11 +36,18 @@ function TodoIndex() {
           </S.TodoItem>
         ))}
       </ul>
-    </>
+    </Wrapper>
   );
 }
 
 export default TodoIndex;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 
 const TodoItem = styled.li`
   display: flex;
