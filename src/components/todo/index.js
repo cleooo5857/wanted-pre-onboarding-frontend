@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import TodoList from "./List/todoList";
 import TodoForm from "./Form/todoForm";
 import { TodoApi } from "../../services/todo/todoApi";
+import { styled } from "styled-components";
+import { axiosInstance } from "../../services";
 
 function TodoIndex() {
   const [todoList, setTodoList] = useState([]);
-  const [Landing, setLanding] = useState(false);
 
   useEffect(() => {
     async function getTodoList() {
@@ -20,24 +21,19 @@ function TodoIndex() {
     getTodoList();
   }, []);
 
-  useEffect(() => {}, [Landing]);
-
   return (
     <>
-      <TodoForm
-        todoList={todoList}
-        setTodoList={setTodoList}
-        Landing={Landing}
-      />
+      <TodoForm todoList={todoList} setTodoList={setTodoList} />
       <ul>
         {todoList.map((todo) => (
-          <li key={todo.id}>
+          <S.TodoItem>
             <TodoList
+              key={todo.id}
               todo={todo}
               todoList={todoList}
               setTodoList={setTodoList}
             />
-          </li>
+          </S.TodoItem>
         ))}
       </ul>
     </>
@@ -45,3 +41,13 @@ function TodoIndex() {
 }
 
 export default TodoIndex;
+
+const TodoItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const S = {
+  TodoItem,
+};

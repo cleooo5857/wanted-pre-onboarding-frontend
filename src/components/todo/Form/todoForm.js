@@ -1,39 +1,61 @@
 import React from "react";
 import { TodoApi } from "../../../services/todo/todoApi";
 import useInputs from "../../../hook/useinputs";
+import styled from "styled-components";
 
 function TodoForm({ todoList, setTodoList }) {
-  const [{ todo }, onChangeTodo, setTodo] = useInputs("");
+  const [{ todo }, onChangeTodo, setValues] = useInputs("");
 
-  const onClickAddBtn = async (event) => {
-    event.preventDefault(); // Prevent default form submission
-
+  const onClickAddBtn = async () => {
     try {
       const res = await TodoApi.createTodo({ todo });
-      if (res.status === 201 && res.data && res.data.data) {
-        setTodoList([...todoList, res.data.data]); // Use res.data.data as it seems to contain the actual todo data
-        setTodo(""); // Reset the input after adding
-      }
+      setTodoList([...todoList, res.data]);
+      setValues({ todo: "" });
     } catch (err) {
       console.log(err.response.data);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={onClickAddBtn}>
-        <input
-          data-testid="new-todo-input"
-          name="todo"
-          value={todo}
-          onChange={onChangeTodo}
-        />
-        <button data-testid="new-todo-add-button" type="submit">
-          Add Todo
-        </button>
-      </form>
-    </div>
+    <FormContainer>
+      <Input
+        data-testid="new-todo-input"
+        name="todo"
+        value={todo}
+        onChange={onChangeTodo}
+        placeholder="Enter your todo..."
+      />
+      <Button onClick={onClickAddBtn} data-testid="new-todo-add-button">
+        Add Todo
+      </Button>
+    </FormContainer>
   );
 }
 
 export default TodoForm;
+
+const FormContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+`;
+
+const Button = styled.button`
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #2581b6;
+  }
+`;

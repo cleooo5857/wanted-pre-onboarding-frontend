@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useRedirect from "../../hook/useAuthRedirect";
 
 function JoinForm() {
-  //Hook을 이용한 todo 이동
+  // Hook을 이용한 todo 이동
   useRedirect("/todo");
   const naviate = useNavigate();
   const [{ email, password }, onChangeForm] = useInputs({
@@ -30,25 +30,25 @@ function JoinForm() {
 
   return (
     <Wrapper>
-      <form onSubmit={onjoinSubmit}>
-        <input
+      <FormContainer onSubmit={onjoinSubmit}>
+        <Input
           data-testid="email-input"
           type="email"
           name="email"
           onChange={onChangeForm}
-          placeholder="email"
+          placeholder="Email"
         />
-        <input
+        <Input
           data-testid="password-input"
           type="password"
           name="password"
           onChange={onChangeForm}
-          placeholder="password"
+          placeholder="Password"
         />
-        <button data-testid="signup-button" disabled={disabled}>
+        <Button data-testid="signup-button" disabled={disabled}>
           회원가입
-        </button>
-      </form>
+        </Button>
+      </FormContainer>
     </Wrapper>
   );
 }
@@ -56,5 +56,39 @@ function JoinForm() {
 export default JoinForm;
 
 const Wrapper = styled.div`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const FormContainer = styled.form`
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const Button = styled.button`
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#3498db")};
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#2581b6")};
+  }
 `;
